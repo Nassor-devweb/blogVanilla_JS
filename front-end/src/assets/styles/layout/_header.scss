@@ -1,0 +1,35 @@
+header {
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    background-color: var(--dark);
+    margin-bottom: 3rem;
+
+    a {
+        display: inline-block;
+        padding: 2rem 2rem;
+        color: var(--divider);
+    }
+
+    .header__title {
+        font-size: 4rem;
+    }
+
+    .header__nav {
+        font-size: 1.6rem;
+
+        .header__nav__list {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            list-style-type: none;
+            height: 100%;
+
+            li {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}
