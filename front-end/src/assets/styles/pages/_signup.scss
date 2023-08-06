@@ -2,7 +2,7 @@
     min-height: 100vh;
     display: grid;
     grid: "header" auto "section" 1fr "footer" auto / auto;
-
+    background-color: #f1f2f6;
     section {
         grid-area: section;
         display: flex;
@@ -17,7 +17,7 @@
             border-radius: 5px;
             padding: 3rem 6rem;
             font-size: 1.6rem;
-            background-color: #9AECDB;
+            background-color: #ffffff;
 
             .title-form {
                 padding-bottom: 1rem;
@@ -38,7 +38,7 @@
                 input,
                 textarea {
                     border-radius: 5px;
-                    border: 1px solid var(--divider);
+                    border: 1px solid #dfe4ea;
                     outline: none;
 
                     &:focus {
@@ -48,6 +48,19 @@
 
                 input {
                     min-height: 2.5rem;
+                }
+                [type="file"]{
+                    border: none;
+                }
+                input::file-selector-button {
+                    background-color: #a4b0be;
+                    padding: 1rem 2rem;
+                    font-size: 1.6rem;
+                    border: none;
+                    border-radius: 3px;
+                    color: white;
+                    font-weight: 700;
+                    cursor: pointer;
                 }
 
                 textarea {

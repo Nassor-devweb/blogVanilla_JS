@@ -8,13 +8,15 @@
         padding: 1rem 2rem;
         border-radius: 3px;
         font-weight: 700;
+        font-size: 1.6rem;
         cursor: pointer;
     }
 
     .btn-primary {
         background-color: var(--primary);
         color: white;
-
+        box-shadow: none;
+        transition: box-shadow 0.2s;
         &:hover {
             box-shadow: var(--box-shadow);
             transition: box-shadow 0.2s;
@@ -26,7 +28,8 @@
         border: 1px solid var(--primary);
         color: var(--primary);
         margin: 0 2rem 0 0;
-
+        box-shadow: none;
+        transition: box-shadow 0.2s;
         &:hover {
             box-shadow: var(--box-shadow);
             transition: box-shadow 0.2s;
