@@ -26,6 +26,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     };
 
     if (!$error) {
+        $data_user = filter_var_array($_POST, [
+            'user_name' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+            'user_email' => FILTER_SANITIZE_EMAIL,
+        ]);
+        $data_user['user_password'] = password_hash($user_password, PASSWORD_ARGON2I);
+        if (isset($_FILES['user_photo'])) {
+
+            $path_photo = 'images/' . time() . '-' . basename($_FILES['user_photo']['name']);
+            move_uploaded_file($_FILES['user_photo']['tmp_name'], $path_photo);
+            $user_photo_path = 'http://localhost:3000/' . $path_photo;
+            echo $user_photo_path;
+        };
     } else {
         http_response_code(400);
         $err = [];
