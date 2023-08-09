@@ -3,6 +3,7 @@
     display: grid;
     grid: "header" auto "section" 1fr "footer" auto / auto;
     background-color: #f1f2f6;
+
     section {
         grid-area: section;
         display: flex;
@@ -49,9 +50,11 @@
                 input {
                     min-height: 2.5rem;
                 }
-                [type="file"]{
+
+                [type="file"] {
                     border: none;
                 }
+
                 input::file-selector-button {
                     background-color: #a4b0be;
                     padding: 1rem 2rem;
@@ -66,6 +69,13 @@
                 textarea {
                     min-height: 20rem;
                 }
+            }
+
+            .erreur {
+                color: red;
+                display: block;
+                text-align: center;
+                margin-top: 1.5rem;
             }
         }
     }

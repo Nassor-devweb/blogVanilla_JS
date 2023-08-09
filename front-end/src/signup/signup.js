@@ -19,12 +19,23 @@ form.addEventListener('submit', async (e) => {
             method: 'POST',
             body: formdata
         })
-        if(querrySaveUser.ok){
-            const response = await querrySaveUser.json()
-            console.log(response)
-        }else{
-            const response = await querrySaveUser.json()
-            console.log(response)
+        if (querrySaveUser.ok) {
+            location.href = './login.html'
+        } else {
+            let msgErreur;
+            const response = await querrySaveUser.json();
+            // if(querrySaveUser.status === 401){
+            //     msgErreur = 
+            // }
+            msgErreur = response.erreur;
+            const err = document.querySelector('.erreur');
+            if (err) {
+                err.remove()
+            }
+            let span = document.createElement('span');
+            span.classList.add('erreur');
+            span.textContent = msgErreur
+            form.insertAdjacentElement('beforeend', span)
         }
         console.log(querrySaveUser)
     } catch (err) {

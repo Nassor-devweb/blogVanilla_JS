@@ -1,11 +1,10 @@
 <?php
 
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS, post, get');
-header("Access-Control-Max-Age", "3600");
-header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
-header("Access-Control-Allow-Credentials", "true");
+include_once('./Cors.php');
+include_once('./class_ConnexionDb.php');
 
+
+$pdo = ConnexionDb::connectDb();
 
 $errors = [
     'name_user' => "Le nom d'utilisateur est incorrect 2 lettre minimale et 8 maximale",
@@ -32,11 +31,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
         $data_user['user_password'] = password_hash($user_password, PASSWORD_ARGON2I);
         if (isset($_FILES['user_photo'])) {
-
             $path_photo = 'images/' . time() . '-' . basename($_FILES['user_photo']['name']);
             move_uploaded_file($_FILES['user_photo']['tmp_name'], $path_photo);
             $user_photo_path = 'http://localhost:3000/' . $path_photo;
-            echo $user_photo_path;
+            $data_user['user_photo'] = $user_photo_path;
+
+            $stmt = $pdo->prepare('INSERT INTO user VALUES(
+                DEFAULT,
+                :user_name,
+                :user_email,
+                :user_password,
+                :user_photo
+            )');
+            $stmt->bindValue(':user_name', $data_user['user_name']);
+            $stmt->bindValue(':user_email', $data_user['user_email']);
+            $stmt->bindValue(':user_password', $data_user['user_password']);
+            $stmt->bindValue(':user_photo', $data_user['user_photo']);
+
+            $errQuerry = null;
+
+            try {
+                $stmt->execute();
+            } catch (PDOException $err) {
+                $errQuerry = $err;
+            }
+
+            if (is_null($errQuerry)) {
+                $id_user = $pdo->lastInsertId();
+                $userStmt = $pdo->prepare('SELECT * FROM user WHERE user_id = :user_id');
+                $userStmt->bindValue(':user_id', $id_user);
+                $userStmt->execute();
+                $dataUser = $userStmt->fetch();
+                $response = json_encode($dataUser);
+                http_response_code(201);
+                echo $response;
+            } else {
+                http_response_code(401);
+                $err = ['erreur' => 'Vous êtes déjà inscrit !!!'];
+                echo json_encode($err);
+            }
         };
     } else {
         http_response_code(400);
