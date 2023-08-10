@@ -16,7 +16,7 @@ form.addEventListener('submit', (e) => {
     })
         .then((resp) => {
             if (resp.ok) {
-                //location.href = './index.html'
+                location.href = './index.html'
             } else if (resp.status === 401) {
                 resp.json()
                     .then((data) => {

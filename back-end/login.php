@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmtSession->execute();
                 $id_session = $pdo->lastInsertId();
                 setcookie('session', $id_session, time() + 60 * 60 * 24, "", "", false, true);
-                echo json_encode($dataUser);
+                //echo json_encode($dataUser);
             } else {
                 http_response_code(401);
                 $err = ['erreur' => "Le mot de passe est incorrect"];
