@@ -3,7 +3,7 @@
 
 class Auth
 {
-    public $isConnect = null;
+    static $isConnect = null;
     static function verifyIsConnect()
     {
         $pdo = require_once('./class_ConnexionDb.php');
@@ -22,9 +22,9 @@ class Auth
                 $stmtDataUser = $pdo->prepare('SELECT * FROM user WHERE id_user = :id_user');
                 $stmtDataUser->bindValue(':id_user', $sessionExist['id_user']);
                 $stmtDataUser->execute();
-                $isConnect = $stmtDataUser->fetch();
+                self::$isConnect = $stmtDataUser->fetch();
             }
         }
-        return $isConnect;
+        return self::$isConnect;
     }
 }
