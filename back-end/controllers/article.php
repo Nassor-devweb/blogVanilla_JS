@@ -65,3 +65,27 @@ function getAllArticle()
     $allArticle = $stmt->fetchAll();
     echo json_encode($allArticle);
 }
+
+function filterArticleAsc($data)
+{
+    global $pdo;
+    $stmt = ($data['id_user']) ? $pdo->prepare('SELECT * FROM article WHERE id_user = :id_user ORDER BY date_created ASC') : $pdo->prepare('SELECT * FROM article ORDER BY date_created ASC');
+    if ($data['id_user']) {
+        $stmt->bindValue(':id_user', $data['id_user']);
+    }
+    $stmt->execute();
+    $articles = $stmt->fechAll();
+    echo json_encode($articles);
+}
+
+function filterArticleDesc($data)
+{
+    global $pdo;
+    $stmt = ($data['id_user']) ? $pdo->prepare('SELECT * FROM article WHERE id_user = :id_user ORDER BY date_created DESC') : $pdo->prepare('SELECT * FROM article ORDER BY date_created DESC');
+    if ($data['id_user']) {
+        $stmt->bindValue(':id_user', $data['id_user']);
+    }
+    $stmt->execute();
+    $articles = $stmt->fechAll();
+    echo json_encode($articles);
+}
