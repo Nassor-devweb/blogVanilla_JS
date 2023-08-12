@@ -1,10 +1,7 @@
 <?php
 
-require_once('./Cors.php');
-require_once('./class_ConnexionDb.php');
+require_once('../middlewares/Cors.php');
 require_once('../controllers/user.php');
-
-$pdo = ConnexionDb::connectDb();
 
 $errors = [
     'password_user' => 'Veuillez saisir votre mot de passe',
@@ -28,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'user_email' => FILTER_SANITIZE_EMAIL
         ]);
         $data_user['user_password'] = $user_password;
+
         loginUser($data_user);
     }
 }

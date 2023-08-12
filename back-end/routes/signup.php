@@ -1,17 +1,15 @@
 <?php
 
 include_once('./Cors.php');
-include_once('./class_ConnexionDb.php');
 require_once('../controllers/user.php');
-
-
-$pdo = ConnexionDb::connectDb();
 
 $errors = [
     'name_user' => "Le nom d'utilisateur est incorrect 2 lettre minimale et 8 maximale",
     'password_user' => 'Le mots de passe est incorrect 5 lettre minimale et 14 maximale',
     'email_user' => "L'adresse email est incorrect"
 ];
+
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_password = $_POST['user_password'];

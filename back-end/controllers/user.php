@@ -1,5 +1,10 @@
 <?php
 
+require_once('../middlewares/class_ConnexionDb.php');
+
+$pdo = ConnexionDb::connectDb();
+
+
 function loginUser($data_user)
 {
     global $pdo;

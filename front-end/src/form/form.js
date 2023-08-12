@@ -16,7 +16,7 @@ function udapteArticle(data){
 }
 
 function saveArticle(data){
-    fetch('http://localhost:3000/form.php',{
+    fetch('http://localhost:3000/routes/form.php',{
         method : 'POST',
         headers : {
             'Content-Type' : 'application/json'
@@ -27,8 +27,8 @@ function saveArticle(data){
 
 form.addEventListener('submit',(e) => {
     e.preventDefault()
-    const category_article = document.querySelector('#category_article')
-    const content_article = document.querySelector('#content_article');
+    const category_article = document.querySelector('#category_article').value
+    const content_article = document.querySelector('#content_article').value;
     const data = {category_article,content_article};
     saveArticle(data)
 });

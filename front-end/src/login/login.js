@@ -7,7 +7,7 @@ form.addEventListener('submit', (e) => {
     const user_password = document.querySelector('#password').value;
     const user_email = document.querySelector('#email').value
     const data_user = { user_email, user_password };
-    fetch('http://localhost:3000/login.php', {
+    fetch('http://localhost:3000/routes/login.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
