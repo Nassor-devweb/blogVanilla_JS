@@ -47,6 +47,7 @@ function loginUser($data_user)
 
 function saveUser($data_user)
 {
+    global $pdo;
     if (isset($_FILES['user_photo'])) {
         $path_photo = 'images/' . time() . '-' . basename($_FILES['user_photo']['name']);
         move_uploaded_file($_FILES['user_photo']['tmp_name'], $path_photo);
@@ -88,4 +89,9 @@ function saveUser($data_user)
             echo json_encode($err);
         }
     };
+}
+function getDataUser($dataUser)
+{
+    unset($dataUser['user_password']);
+    echo json_encode($dataUser);
 }

@@ -3,6 +3,7 @@
 require_once('../middlewares/Cors.php');
 require_once('../controllers/article.php');
 require_once('../middlewares/ClassAuth.php');
+require_once('../controllers/user.php');
 
 $isConnect = Auth::verifyIsConnect();
 
@@ -20,6 +21,9 @@ if ($isConnect) {
         $dataDecoded = json_decode($content, true);
         $data = sanatizeDataArticle($dataDecoded);
         updateArticle($data);
+    }
+    if ($_SERVER['REQUEST_METHOD']  === 'GET') {
+        getDataUser($isConnect);
     }
 } else {
     http_response_code(401);
