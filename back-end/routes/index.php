@@ -1,5 +1,6 @@
 <?php
 
+require_once('../middlewares/Cors.php');
 require_once('../controllers/article.php');
 
 

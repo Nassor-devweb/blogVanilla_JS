@@ -1,0 +1,45 @@
+.article_contenaire {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .article {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        max-width: 60rem;
+        background-color: white;
+        padding: 2rem 5rem;
+        border-radius: 0.3rem;
+        box-shadow: var(--box-shadow);
+        position: relative;
+
+        img {
+            width: 7rem;
+            height: 7rem;
+            border-radius: 50%;
+            position: absolute;
+            top: -3.5rem;
+            left: 45%;
+        }
+
+        h2 {
+            margin-top: 2rem;
+            display: block;
+        }
+
+        span,
+        p,
+        h2 {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-content {
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+}

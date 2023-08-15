@@ -62,7 +62,7 @@ function deleteArticle($data_article)
 function getAllArticle()
 {
     global $pdo;
-    $stmt = $pdo->prepare('SELECT * FROM article ORDER BY date_cretated DESC');
+    $stmt = $pdo->prepare('SELECT auteur_article, category_article, content_article, date_created,id_article,user.user_id, user.user_photo FROM article INNER JOIN user ON user.user_id = article.user_id  ORDER BY date_created DESC');
     $stmt->execute();
     $allArticle = $stmt->fetchAll();
     echo json_encode($allArticle);
