@@ -4,13 +4,15 @@ header {
     justify-content: space-between;
     font-size: 1.6rem;
     background-color: var(--dark);
-    //margin-bottom: 3rem;
-    .header_title_contenaire{
+    margin-bottom: 5rem;
+
+    .header_title_contenaire {
         padding: 2rem 2rem;
         display: flex;
         justify-content: center;
         align-items: center;
     }
+
     a {
         display: inline-block;
         color: var(--divider);
@@ -27,12 +29,14 @@ header {
         justify-content: center;
         align-items: center;
         max-height: 8rem;
+
         .user_photo {
             display: inline-block;
             width: 90%;
             height: 70%;
             border-radius: 50%;
         }
+
         .header__nav__list {
             display: flex;
             justify-content: space-evenly;

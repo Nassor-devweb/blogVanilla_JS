@@ -1,45 +1,96 @@
-.article_contenaire {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+.contenaire {
+    position: relative;
 
-    .article {
+
+
+    #confirm-delete {
+        display: none;
+    }
+
+    .invisible {
+        background-color: rgba($color: #000000, $alpha: 0.5);
+        margin: auto;
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        z-index: 200;
+
+        .contenaire_confirm {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+
+            .confirm-delete__card {
+                //max-height: 20rem;
+                border-radius: 0.3rem;
+                padding: 5rem;
+                background-color: white;
+                max-width: 50rem;
+                width: 100%;
+
+                p {
+                    font-size: 1.6rem;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .article_contenaire {
+        width: 100%;
         display: flex;
         justify-content: center;
-        flex-direction: column;
-        width: 100%;
-        max-width: 60rem;
-        background-color: white;
-        padding: 2rem 5rem;
-        border-radius: 0.3rem;
-        box-shadow: var(--box-shadow);
-        position: relative;
 
-        img {
-            width: 7rem;
-            height: 7rem;
-            border-radius: 50%;
-            position: absolute;
-            top: -3.5rem;
-            left: 45%;
-        }
-
-        h2 {
-            margin-top: 2rem;
-            display: block;
-        }
-
-        span,
-        p,
-        h2 {
-            display: block;
-            width: 100%;
-            text-align: center;
-        }
-
-        .btn-content {
+        .article {
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+            //flex-direction: column;
+            width: 100%;
+            max-width: 60rem;
+            background-color: white;
+            padding: 2rem 5rem;
+            border-radius: 0.3rem;
+            box-shadow: var(--box-shadow);
+            position: relative;
+
+            img {
+                width: 7rem;
+                height: 7rem;
+                border-radius: 50%;
+                position: absolute;
+                top: -3.5rem;
+                left: 45%;
+            }
+
+            h2 {
+                margin-top: 2rem;
+            }
+
+            p {
+                display: block;
+                width: 100%;
+                text-align: justify;
+                font-size: 1.6rem;
+            }
+
+            h2,
+            span {
+                text-align: center;
+                display: block;
+                width: 100%;
+            }
+
+            .btn-content {
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+            }
         }
     }
 }

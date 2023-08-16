@@ -1,6 +1,7 @@
 import './assets/styles/styles.scss'
 
 const section = document.querySelector('.content')
+const confirm_delete = document.querySelector('#confirm-delete')
 
 function affichage(data_article) {
     const allArticle = data_article.map((curr) => {
@@ -27,7 +28,12 @@ function affichage(data_article) {
         const button_primary = document.createElement('button')
         button_primary.classList.add('btn')
         button_primary.classList.add('btn-primary')
+        button_primary.setAttribute('type', 'submit');
         button_primary.textContent = 'Supprimer';
+        button_primary.addEventListener('click', (e) => {
+            e.preventDefault()
+            confirm_delete.removeAttribute('id')
+        })
 
         const button_secondary = document.createElement('button')
         button_secondary.classList.add('btn')
