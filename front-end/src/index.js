@@ -1,7 +1,25 @@
 import './assets/styles/styles.scss'
 
-const section = document.querySelector('.content')
-const confirm_delete = document.querySelector('#confirm-delete')
+const confirm_delete = document.querySelector('.invisible');
+const deleteButton = document.querySelector('#delete');
+let deleteId;
+
+deleteButton.addEventListener('click', (e) => {
+    const id_article = { 'id_article': deleteId }
+    fetch('http://localhost:3000/routes/index.php', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(id_article)
+    })
+        .then((resp) => {
+            deleteId = null;
+            confirm_delete.setAttribute('id', 'confirm-delete')
+            getAllArticle()
+        })
+
+})
 
 function affichage(data_article) {
     const allArticle = data_article.map((curr) => {
@@ -28,11 +46,11 @@ function affichage(data_article) {
         const button_primary = document.createElement('button')
         button_primary.classList.add('btn')
         button_primary.classList.add('btn-primary')
-        button_primary.setAttribute('type', 'submit');
         button_primary.textContent = 'Supprimer';
         button_primary.addEventListener('click', (e) => {
             e.preventDefault()
             confirm_delete.removeAttribute('id')
+            deleteId = curr.id_article;
         })
 
         const button_secondary = document.createElement('button')
@@ -49,6 +67,7 @@ function affichage(data_article) {
     const ul = document.createElement('ul');
     ul.classList.add('article_contenaire');
     ul.append(...allArticle);
+    const section = document.querySelector('.content')
     section.innerHTML = '';
     section.append(ul)
 }
