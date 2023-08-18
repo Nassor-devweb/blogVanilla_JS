@@ -3,6 +3,28 @@ import './assets/styles/styles.scss'
 const confirm_delete = document.querySelector('.invisible');
 const deleteButton = document.querySelector('#delete');
 let deleteId;
+let id_user;
+
+
+function getDataUser() {
+    fetch('http://localhost:3000/routes/user_info.php')
+        .then((resp) => {
+            if (resp.status < 299) {
+                resp.json()
+                    .then((data_user) => {
+                        console.log(data_user)
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            } else {
+                location.assign('./login.html')
+            }
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
 
 deleteButton.addEventListener('click', (e) => {
     const id_article = { 'id_article': deleteId }
@@ -20,6 +42,8 @@ deleteButton.addEventListener('click', (e) => {
         })
 
 })
+
+getDataUser()
 
 function affichage(data_article) {
     const allArticle = data_article.map((curr) => {
@@ -75,14 +99,18 @@ function affichage(data_article) {
 function getAllArticle() {
     fetch('http://localhost:3000/routes/index.php')
         .then((resp) => {
-            resp.json()
-                .then((data) => {
-                    console.log(data)
-                    affichage(data)
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
+            if (resp.status < 299) {
+                resp.json()
+                    .then((data) => {
+                        console.log(data)
+                        affichage(data)
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            } else {
+                location.assign('./login.html')
+            }
         })
         .catch((err) => {
             console.log(err)
