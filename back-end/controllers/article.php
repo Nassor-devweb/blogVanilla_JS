@@ -28,13 +28,13 @@ function saveArticle(array $data)
         :category_article,
         :content_article,
         :date_created,
-        :user_id
+        :id_user
     )');
     $stmt->bindValue(':auteur_article', $isConnect['user_name']);
     $stmt->bindValue(':category_article', $data['category_article']);
     $stmt->bindValue(':content_article', $data['content_article']);
     $stmt->bindValue(':date_created', $date_created);
-    $stmt->bindValue(':user_id', $isConnect['user_id']);
+    $stmt->bindValue(':id_user', $isConnect['user_id']);
     $stmt->execute();
 }
 
@@ -62,7 +62,7 @@ function deleteArticle($data_article)
 function getAllArticle()
 {
     global $pdo;
-    $stmt = $pdo->prepare('SELECT auteur_article, category_article, content_article, date_created,id_article,user.user_id, user.user_photo FROM article INNER JOIN user ON user.user_id = article.user_id  ORDER BY date_created DESC');
+    $stmt = $pdo->prepare('SELECT auteur_article, category_article, content_article, date_created,id_article,user.user_id, user.user_photo FROM article INNER JOIN user ON user.user_id = article.id_user  ORDER BY date_created DESC');
     $stmt->execute();
     $allArticle = $stmt->fetchAll();
     echo json_encode($allArticle);

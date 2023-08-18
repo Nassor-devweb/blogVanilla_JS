@@ -3,7 +3,7 @@ import './assets/styles/styles.scss'
 const confirm_delete = document.querySelector('.invisible');
 const deleteButton = document.querySelector('#delete');
 let deleteId;
-let id_user;
+let dataUser;
 
 
 function getDataUser() {
@@ -13,6 +13,7 @@ function getDataUser() {
                 resp.json()
                     .then((data_user) => {
                         console.log(data_user)
+                        dataUser = data_user;
                     })
                     .catch((err) => {
                         console.log(err)
@@ -59,7 +60,9 @@ function affichage(data_article) {
         console.log(curr.date_created)
         const span = document.createElement('span');
         const date = curr.date_created;
-        span.textContent = date.toLocaleString('fr-FR');
+        //span.textContent = date.toLocaleString('fr-FR');
+        span.textContent = date;
+
 
         const content = document.createElement('p')
         content.textContent = `${curr.content_article}`
